@@ -32,6 +32,7 @@ public class ColorfulCircles extends Application {
     Scene scene = new Scene(root, 800, 600, Color.BLACK);
     primaryStage.setScene(scene);
 
+    // Creates 30 circles using this for loop
     Group circles = new Group();
     for (int i = 0; i < 30; i++) {
       Circle circle = new Circle(150, Color.web("white", 0.05));
@@ -39,8 +40,9 @@ public class ColorfulCircles extends Application {
       circle.setStroke(Color.web("white", 0.16));
       circle.setStrokeWidth(4);
       circles.getChildren().add(circle);
-    }
+    } // End of circle creation
 
+    // Creating a rectangle in the background and filling it with a color gradient
     Rectangle colors = new Rectangle(scene.getWidth(), scene.getHeight(),
             new LinearGradient(0f, 1f, 1f, 0f, true, CycleMethod.NO_CYCLE, new
                     Stop[]{
@@ -54,15 +56,19 @@ public class ColorfulCircles extends Application {
                     new Stop(1, Color.web("#f2660f")),}));
     colors.widthProperty().bind(scene.widthProperty());
     colors.heightProperty().bind(scene.heightProperty());
+    // End of rectangle creation
 
+    // Adds color to the circles and darkens the scene using a blend effect
     Group blendModeGroup =
             new Group(new Group(new Rectangle(scene.getWidth(), scene.getHeight(),
                     Color.BLACK), circles), colors);
     colors.setBlendMode(BlendMode.OVERLAY);
     root.getChildren().add(blendModeGroup);
 
+    // Adding a blur effect to the circles so it looks as if you are not wearing glasses
     circles.setEffect(new BoxBlur(10, 10, 3));
 
+    // Makes the circles move
     Timeline timeline = new Timeline();
     for (Node circle: circles.getChildren()) {
       timeline.getKeyFrames().addAll(
