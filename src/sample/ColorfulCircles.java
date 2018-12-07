@@ -66,7 +66,7 @@ public class ColorfulCircles extends Application {
     root.getChildren().add(blendModeGroup);
 
     // Adding a blur effect to the circles so it looks as if you are not wearing glasses
-    circles.setEffect(new BoxBlur(10, 10, 3));
+    circles.setEffect(new BoxBlur(5, 5, 3));
 
     // Makes the circles move
     Timeline timeline = new Timeline();
